@@ -1,0 +1,72 @@
+﻿@model FSO.Models.Event
+
+@{
+    ViewData["Title"] = "Szczegóły";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+    #map { height: 400px; }
+</style>
+
+<h1>Szczegóły wydarzenia</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <div id="map"></div>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EventType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EventType.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location.Name), @Html.DisplayFor(model => model.Location.Position)
+        </dd>
+        <dt class = "col-sm-2">
+            Termin
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Start) - @Html.DisplayFor(model => model.End)
+        </dd>
+    </dl>
+</div>
+@{
+    var lat = ViewData["Lat"];
+    var lon = ViewData["Lon"];
+}
+<script>
+    var lat = @lat;  // Przekazane lat
+    var lon = @lon;  // Przekazane lon
+    var map = L.map('map').setView([lat,lon], 16); // Koordynaty
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        minZoom: 13,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+    L.marker([lat, lon]).addTo(map)
+        .bindPopup("Lokalizacja spotkania")
+        .openPopup();
+
+    // Onclick dodający pinezkę, bez którego z jakiegoś powodu mapa się nie pokazuje :(
+    map.on('click', function(e) {
+    const latlng = e.latlng;
+});
+</script>

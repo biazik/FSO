@@ -1,0 +1,78 @@
+﻿@model FSO.Models.Location
+
+@{
+    ViewData["Title"] = "Dodaj lokalizację";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+    #map { height: 400px; }
+</style>
+
+<h1>Dodawanie lokalizacji</h1>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>Bez wyboru lokalizacji, nie zostanie ona dodana.</strong>. Polecamy wpisać znaną nazwę oraz szczegóły takie jak wejście, numer klatki itd.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@if (TempData["ErrorMessage"] != null)
+{
+        <div class="alert alert-danger alert-dismissible fade show"role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+}
+<hr />
+    <div id="map"></div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Position" class="control-label"></label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="lat" id="lat" class="form-control" type="hidden" />
+                <input asp-for="lon" id="lon" class="form-control" type="hidden" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    let singleMarker = null; // Pinezka
+    var map = L.map('map').setView([52.2898429,21.0068082], 16); // Koordynaty
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        minZoom: 13,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Onclick dodający pinezkę
+    map.on('click', function(e) {
+    const latlng = e.latlng;
+
+    // Jak już jest pinezka, dodaje w innym miejscu, a tą usuwa. Bez tego tworzyło nieskończenie wiele pinezek
+    if (singleMarker) {
+        singleMarker.setLatLng(latlng);
+    } else {
+        singleMarker = L.marker(latlng).addTo(map)
+    }
+    document.getElementById('lat').value = latlng.lat;
+    document.getElementById('lon').value = latlng.lng;
+});
+</script>

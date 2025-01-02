@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FSO.Models.Tag>
+
+@{
+    ViewData["Title"] = "Tagi";
+}
+
+<center><h3 class="display-6">Lista tagów</h3></center>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Dodaj tag</a>
+</p>
+<table class="table table-striped table-hover table-bordered">
+    <thead class="custom-header">
+        <tr>
+            <th>
+                Nazwa
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

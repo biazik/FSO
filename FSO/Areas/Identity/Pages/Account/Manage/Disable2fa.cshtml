@@ -1,0 +1,25 @@
+﻿@page
+@model Disable2faModel
+@{
+    ViewData["Title"] = "Wyłącz weryfikację dwuetapową";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h3>@ViewData["Title"]</h3>
+
+<div class="alert alert-warning" role="alert">
+    <p>
+        <strong>Tutaj możesz wyłączyć weryfikację dwuetapową.</strong>
+    </p>
+    <p>
+        Wyłączenie weryfikacji nie zmienia kluczy używanych w aplikacjach weryfikujących. Kliknij w link jeśli chcesz zmienić klucze.
+        <a asp-page="./ResetAuthenticator">Zresetuj klucze weryfikacyjne.</a>
+    </p>
+</div>
+
+<div>
+    <form method="post">
+        <button class="btn btn-danger" type="submit">Wyłącz weryfikację dwuetapową</button>
+    </form>
+</div>

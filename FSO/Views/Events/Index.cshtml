@@ -1,0 +1,80 @@
+﻿@model IEnumerable<FSO.Models.Event>
+
+@{
+    ViewData["Title"] = "Wydarzenia";
+}
+
+<center><h3 class="display-6">Przegląd wydarzeń</h3></center>
+@if (TempData["UserTagPoints"] != null)
+{
+        <div class="alert alert-info">
+            <strong>Twoje punkty za tagi:</strong> @TempData["UserTagPoints"]
+        </div>
+}
+<table class="table table-striped table-hover table-bordered">
+    <thead class="custom-header">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                Czas trwania
+            </th>
+            <th>
+                Akcje
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+                @if (item.Start < DateTime.Now && DateTime.Now < item.End)
+                {
+                    <b> Trwa 🟢</b>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Name) <span class="badge bg-light text-dark">@Html.DisplayFor(modelItem => item.Location.Position)</span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start) - @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td>
+                <a asp-action="Details" class="btn btn-info btn-sm" asp-route-id="@item.Id">Info</a>
+                <form asp-action="ReactToEvent" method="post" style="display:inline">
+                    <input type="hidden" name="eventId" value="@item.Id" />
+                    <input type="hidden" name="status" value="2" /> <!-- Będę -->
+                    <button type="submit" style="box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);" class="btn btn-success btn-sm">Będę</button>
+                </form>
+                <form asp-action="ReactToEvent" method="post" style="display:inline">
+                    <input type="hidden" name="eventId" value="@item.Id" />
+                    <input type="hidden" name="status" value="1" /> <!-- Lubię -->
+                    <button type="submit" class="btn btn-success btn-sm">Lubię</button>
+                </form>
+                <form asp-action="ReactToEvent" method="post" style="display:inline">
+                    <input type="hidden" name="eventId" value="@item.Id" />
+                    <input type="hidden" name="status" value="-1" /> <!-- Nie lubię -->
+                    <button type="submit" class="btn btn-danger btn-sm">Nie lubię</button>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

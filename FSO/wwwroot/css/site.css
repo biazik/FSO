@@ -1,0 +1,69 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;  
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #FDFEDD;
+}
+
+.custom-header {
+    background-color: lightsalmon;
+}
+body .bg-white {
+    background-color: lightsalmon !important;
+}
+
+body .btn-primary {
+    background-color: lightsalmon !important;
+    border-color: lightsalmon !important;
+    color: white !important;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+body .btn-primary:hover {
+        background-color: coral !important;
+        border-color: coral !important;
+        transform: scale(1.05);
+    }
+
+body .btn-primary:active {
+        background-color: tomato !important;
+        border-color: tomato !important;
+        transform: scale(0.95);
+    }
+
+
+body #forgot-password, #create-acc, #resend-confirmation, .odnosnik {
+    color: lightsalmon !important;
+}
+
+body #logout{
+    color:white !important;
+    background-color:gray !important;
+}
+body .nav-link.active {
+    background-color: lightsalmon !important;
+    color: #FDFEDD !important;
+}
+body #personal-data, #profile, #email, #change-password{
+    color:black !important;
+}
+body th, td{
+    text-align:center !important;
+}
