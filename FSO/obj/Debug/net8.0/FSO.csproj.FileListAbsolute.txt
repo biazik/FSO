@@ -300,3 +300,4 @@ C:\Users\Patryk\source\repos\FSO\FSO\obj\Debug\net8.0\refint\FSO.dll
 C:\Users\Patryk\source\repos\FSO\FSO\obj\Debug\net8.0\FSO.pdb
 C:\Users\Patryk\source\repos\FSO\FSO\obj\Debug\net8.0\FSO.genruntimeconfig.cache
 C:\Users\Patryk\source\repos\FSO\FSO\obj\Debug\net8.0\ref\FSO.dll
+C:\Users\Patryk\source\repos\FSO\FSO\obj\Debug\net8.0\FSO.sourcelink.json

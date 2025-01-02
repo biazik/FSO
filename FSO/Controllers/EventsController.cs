@@ -71,7 +71,7 @@ namespace FSO.Controllers
                         .Sum(et => tagScores.ContainsKey(et.TagId) ? tagScores[et.TagId] : 0)
                 })
                 .OrderByDescending(e => e.Score)
-                .Select(e => e.Event) // Zwracamy tylko obiekty Event
+                .Select(e => e.Event)
                 .ToList();
 
             return View(rankedEvents);

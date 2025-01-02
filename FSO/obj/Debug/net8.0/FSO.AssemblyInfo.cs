@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FSO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d01b390f304559e17b6a16a92c9e79cd7590599")]
 [assembly: System.Reflection.AssemblyProductAttribute("FSO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FSO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

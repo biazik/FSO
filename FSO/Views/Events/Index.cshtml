@@ -60,17 +60,17 @@
                 <a asp-action="Details" class="btn btn-info btn-sm" asp-route-id="@item.Id">Info</a>
                 <form asp-action="ReactToEvent" method="post" style="display:inline">
                     <input type="hidden" name="eventId" value="@item.Id" />
-                    <input type="hidden" name="status" value="2" /> <!-- Będę -->
+                    <input type="hidden" name="status" value="2" /> <!-- 2 -->
                     <button type="submit" style="box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);" class="btn btn-success btn-sm">Będę</button>
                 </form>
                 <form asp-action="ReactToEvent" method="post" style="display:inline">
                     <input type="hidden" name="eventId" value="@item.Id" />
-                    <input type="hidden" name="status" value="1" /> <!-- Lubię -->
+                    <input type="hidden" name="status" value="1" /> <!-- 1 -->
                     <button type="submit" class="btn btn-success btn-sm">Lubię</button>
                 </form>
                 <form asp-action="ReactToEvent" method="post" style="display:inline">
                     <input type="hidden" name="eventId" value="@item.Id" />
-                    <input type="hidden" name="status" value="-1" /> <!-- Nie lubię -->
+                    <input type="hidden" name="status" value="-1" /> <!-- -1 -->
                     <button type="submit" class="btn btn-danger btn-sm">Nie lubię</button>
                 </form>
             </td>

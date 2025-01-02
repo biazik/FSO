@@ -32,13 +32,11 @@ namespace FSO.Controllers
 
             if (User.IsInRole("User"))
             {
-                // Pobierz UserId zalogowanego użytkownika
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // UserId jako string
 
-                // Spróbuj przekonwertować currentUserId na Guid
+                // konwersja guidu na stringa
                 if (Guid.TryParse(currentUserId, out Guid userGuid))
                 {
-                    // Filtruj listę uczestników na poziomie pamięci (LINQ w pamięci)
                     applicationDbContext = applicationDbContext.Where(p => p.UserId == userGuid).ToList();
                 }
                 else
@@ -52,7 +50,6 @@ namespace FSO.Controllers
                 .Where(u => userIds.Contains(u.Id))
                 .ToListAsync();
 
-            // Przekazanie danych do widoku
             ViewData["Users"] = users;
 
 
