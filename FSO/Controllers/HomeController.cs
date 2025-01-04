@@ -25,7 +25,7 @@ namespace FSO.Controllers
             var selectedEvents = _context.Event
                 .Include(e => e.EventType)
                 .Include(e => e.Location)
-                .Where(e => (e.Start >= DateTime.Now)&&(e.isPublic==true)) 
+                .Where(e => (e.End >= DateTime.Now)&&(e.isPublic==true)) 
                 .OrderBy(e => e.Start)
                 .Take(5)
                 .ToList();
